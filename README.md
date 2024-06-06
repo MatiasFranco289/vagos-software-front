@@ -1,31 +1,27 @@
-# React + TypeScript + Vite
+# What is this
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the front-end page of Vagos Software. It is made using React, TypeScript and Tailwind.
 
-Currently, two official plugins are available:
+# VSCode Setup
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This projects uses the following extensions in VSCode:
 
-## Expanding the ESLint configuration
+- **Prettier** for code formatting.
+- **ESLint** for TypeScript linting.
+- **Tailwind CSS IntelliSense** to autocomple tailwind.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Prettier extra configuration
 
-- Configure the top-level `parserOptions` property like this:
+Once the extensions are installed be sure to setup correctly your VSCode to autoformat the code on save using **Prettier**:
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+- Go to configurations.
+- Go to settings.
+- Search for default formatter and select **Prettier**.
+- Search for the option "Editor: Format on save" and enable it.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
-# vagos-software-front
+# Running the project
+
+To run the project you can use the following commands:
+
+- **npm run dev**: To run the project in development.
+- **npm run build**: To build the application.
