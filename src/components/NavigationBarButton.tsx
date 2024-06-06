@@ -12,9 +12,10 @@ export default function NavigationBarButton({
 }: NavigationBarButtonProps) {
   const location = useLocation();
   const [currentPage, setCurrentPage] = useState("/");
-  const baseStyles = "text-white p-3 font-normal hover:text-white";
+  const baseStyles =
+    "text-white p-3 font-normal hover:text-white hover:text-lg duration-100 text-start sm:text-center";
   const activeStyles =
-    currentPage === url ? "text-white pointer-events-none" : "text-slate-400";
+    currentPage === url ? "text-white pointer-events-none" : "text-slate-500";
 
   useEffect(() => {
     setCurrentPage(location.pathname);
