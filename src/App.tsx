@@ -1,20 +1,54 @@
-import './App.css'
-import Home from './pages/Home'
-import Blog from './pages/Blog'
-import { Route, Routes } from 'react-router-dom'
-import NavigationBar from './components/NavigationBar'
+import "./App.css";
+import Home from "./pages/Home";
+import Blog from "./pages/Blog";
+import { Route, Routes } from "react-router-dom";
+import NavigationBar from "./components/NavigationBar";
+import Login from "./pages/Login";
+import { useEffect, useState } from "react";
+import { UserCredentials } from "./constants";
+import { request } from "./constants";
+import { AxiosError } from "axios";
 
 function App() {
+  const [userCredentials, setUserCredentials] = useState<
+    UserCredentials | undefined
+  >();
+
+  useEffect(() => {
+    // Checks the API endpoint to get the user current session info
+    async function set_session(): Promise<void> {
+      try {
+        const response = await request.get(
+          "http://localhost:3000/users/status",
+          {
+            withCredentials: true,
+          }
+        );
+
+        setUserCredentials(response.data as UserCredentials);
+      } catch (err) {
+        if (err instanceof AxiosError) {
+          return undefined;
+        }
+
+        throw new Error("Unhandled error: " + err);
+      }
+    }
+
+    set_session();
+  }, []);
+
   return (
     <div>
-      <NavigationBar/>
-      
+      <NavigationBar userCredentials={userCredentials} />
+
       <Routes>
-        <Route path='/' element={<Home/>}/>
-        <Route path='/blog' element={<Blog/>}/>
+        <Route path="/" element={<Home />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
