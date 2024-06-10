@@ -25,7 +25,7 @@ function App() {
           }
         );
 
-        setUserCredentials(response.data as UserCredentials);
+        setUserCredentials(response.data.data[0] as UserCredentials);
       } catch (err) {
         if (err instanceof AxiosError) {
           return undefined;
