@@ -1,7 +1,15 @@
 import NavigationBarButton from "./NavigationBarButton";
 import LoginButton from "./LoginButton";
+import NavigationBarUser from "./NavigationBarUser";
+import { UserCredentials } from "../constants";
 
-export default function NavigationBar() {
+interface NavBarProps {
+  userCredentials: UserCredentials | undefined;
+}
+
+export default function NavigationBar({ userCredentials }: NavBarProps) {
+  console.log(userCredentials);
+
   return (
     <div className="absolute top-0 left-0 w-full flex justify-start p-3 sm:justify-end">
       <div className="flex flex-wrap flex-col sm:flex-row">
@@ -9,7 +17,11 @@ export default function NavigationBar() {
         <NavigationBarButton text="Proyectos" url="/projects" />
         <NavigationBarButton text="Blog" url="/blog" />
         <NavigationBarButton text="Sobre Nosotros" url="/about" />
-        <LoginButton />
+        {userCredentials ? (
+          <NavigationBarUser userCredentials={userCredentials} />
+        ) : (
+          <LoginButton />
+        )}
       </div>
     </div>
   );
