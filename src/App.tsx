@@ -3,7 +3,6 @@ import Home from "./pages/Home";
 import Blog from "./pages/Blog";
 import { Route, Routes } from "react-router-dom";
 import NavigationBar from "./components/NavigationBar";
-import Login from "./pages/Login";
 import { useEffect, useState } from "react";
 import { UserCredentials } from "./constants";
 import { request } from "./constants";
@@ -45,7 +44,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/blog" element={<Blog />} />
-        <Route path="/login" element={<Login />} />
       </Routes>
     </div>
   );
