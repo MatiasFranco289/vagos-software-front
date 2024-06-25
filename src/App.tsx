@@ -1,8 +1,8 @@
-import "./App.css";
 import Home from "./pages/Home";
 import Blog from "./pages/Blog";
 import { Route, Routes } from "react-router-dom";
 import NavigationBar from "./components/NavigationBar";
+import Projects from "./pages/Projects";
 import { useEffect, useState } from "react";
 import { UserCredentials } from "./constants";
 import { request } from "./constants";
@@ -38,11 +38,12 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <div className="w-screen h-screen min-h-screen">
       <NavigationBar userCredentials={userCredentials} />
 
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/projects" element={<Projects />} />
         <Route path="/blog" element={<Blog />} />
       </Routes>
     </div>
