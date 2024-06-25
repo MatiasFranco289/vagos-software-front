@@ -1,10 +1,12 @@
-interface ProjectCardProps {
+import { ProjectTagApi } from "../constants";
+
+interface ProjectProps {
   title: string;
   img: string;
   state: string;
   startDate: string;
   endDate: string;
-  tags: Array<string>;
+  tags: Array<ProjectTagApi>;
 }
 
 export default function ProjectCard({
@@ -13,8 +15,20 @@ export default function ProjectCard({
   state = "Undefined",
   startDate = "00/00/0000",
   endDate = "00/00/0000",
-  tags = ["Undefined", "Undefined", "Undefined"],
-}: ProjectCardProps) {
+  tags = [],
+}: ProjectProps) {
+  function formatDate(isoDate: string) {
+    const date = new Date(isoDate);
+
+    const day = date.getDate().toString().padStart(2, "0");
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    const year = date.getFullYear();
+
+    const formattedDate = `${day}-${month}-${year}`;
+
+    return formattedDate;
+  }
+
   return (
     <div
       className="w-[300px] min-w-[300px] min-h-[300px]
@@ -50,7 +64,7 @@ export default function ProjectCard({
           </div>
 
           <div className="w-8/12">
-            <p className="font-thin">{startDate}</p>
+            <p className="font-thin">{formatDate(startDate)}</p>
           </div>
         </div>
 
@@ -62,7 +76,7 @@ export default function ProjectCard({
           </div>
 
           <div className="w-8/12">
-            <p className="font-thin">{endDate}</p>
+            <p className="font-thin">{formatDate(endDate)}</p>
           </div>
         </div>
 
@@ -74,8 +88,8 @@ export default function ProjectCard({
           </div>
 
           <div className="w-8/12 flex flex-wrap">
-            {tags.map((str, index) => {
-              let text: string = str;
+            {tags.map((tag, index) => {
+              let text: string = tag.tag_name;
               if (index != tags.length - 1) {
                 text += ",";
               }
